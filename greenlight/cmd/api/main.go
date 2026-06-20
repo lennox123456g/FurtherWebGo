@@ -58,8 +58,9 @@ func main() {
 	//SETTING OUR SERVER WITH TIMEOUT SETTINGS
 	//listening to port 4000 in the config struct and the servermux above as the handler
 	srv := &http.Server{
-		Addr:         fmt.Sprintf(":%d", cfg.port),
-		Handler:      mux,
+		Addr: fmt.Sprintf(":%d", cfg.port),
+		//Handler:      mux, change to  use httprouter instance app.routes()
+		Handler:      app.routes(),
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
