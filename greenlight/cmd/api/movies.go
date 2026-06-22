@@ -3,9 +3,8 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"strconv"
-
-	"github.com/julienschmidt/httprouter"
+	//"strconv"
+	//"github.com/julienschmidt/httprouter"
 )
 
 // Add a createMovieHandler for the "POST /v1/movies" endpoint. For now we simply
@@ -19,6 +18,9 @@ func (app *application) createMovieHandler(w http.ResponseWriter, r *http.Reques
 // response.
 
 func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request) {
+
+	/* TAKEN TO HELPERS SINCE IT WILL BE USED MANY TIMES ALLOVER
+
 	// When httprouter is parsing a request, any interpolated URL parameters will be
 	// stored in the request context. We can use the ParamsFromContext() function to
 	// retrieve a slice containing these parameter names and values.
@@ -32,6 +34,13 @@ func (app *application) showMovieHandler(w http.ResponseWriter, r *http.Request)
 	// function to return a 404 Not Found response.
 	id, err := strconv.ParseInt(params.ByName("id"), 10, 64)
 	if err != nil || id < 1 {
+		http.NotFound(w, r)
+		return
+	}
+	*/
+
+	id, err := app.readIDParam(r)
+	if err != nil {
 		http.NotFound(w, r)
 		return
 	}

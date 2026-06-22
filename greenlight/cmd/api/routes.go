@@ -1,4 +1,4 @@
-package maim
+package main
 
 import (
 	"net/http"
